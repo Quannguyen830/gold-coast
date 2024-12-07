@@ -1,0 +1,18 @@
+{
+    "web": {
+      "client_id": "1015137600762-411paej3c3d83dtte6n41ruoubvl34hh.apps.googleusercontent.com",
+      "project_id": "gold-coast-444007",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_secret": "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",
+      "redirect_uris": [
+        "https://gold-coast-sandy.vercel.app",
+        "http://localhost:3000"
+      ],
+      "javascript_origins": [
+        "http://localhost:3000",
+        "https://gold-coast-sandy.vercel.app"
+      ]
+    }
+  }
