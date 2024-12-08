@@ -4,6 +4,7 @@ import { DownloadIcon } from "@/components/common/icon/DownloadIcon";
 import { HeartIcon } from "@/components/common/icon/HeartIcon";
 import { SharedIcon } from "@/components/common/icon/SharedIcon";
 import { NavBar } from "@/components/common/share/NavBar";
+import { supabase } from "../utils/supabase";
 import { GooglePhotosService } from "@/service/service";
 import Image from "next/image";
 import { useState } from "react";
