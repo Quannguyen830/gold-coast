@@ -21,14 +21,16 @@ export default function Home() {
 
   useEffect(() => {
     const fetchMediaItems = async () => {
-      const items = await fetch("/api/pong").then(res => res.json());
-      setMediaItems(items.data.mediaItems);
+      const items = await supabase.from("image_links").select("*");
+      setMediaItems(items.data || []);
+      // const items = await fetch("/api/pong").then(res => res.json());
+      // setMediaItems(items.data.mediaItems);
     };
     
     fetchMediaItems();
   }, []);
 
-  if (mediaItems.length === 0) return;
+  if (!mediaItems || mediaItems.length === 0) return;
 
   return (
     <>
