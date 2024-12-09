@@ -12,10 +12,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Initialize the storage once at the layout level
-  const photosService = new GooglePhotosService();
-  await photosService.initializeStorage();
-
   return (
     <html lang="en">
       <body

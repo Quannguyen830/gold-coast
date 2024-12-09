@@ -1,12 +1,28 @@
 "use client";
 
-import { supabase } from "../utils/supabase";
-import { GooglePhotosService } from "@/service/service";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+interface MediaItem {
+  id: string;
+  baseUrl: string;
+  filename: string;
+  mimeType: string;
+}
 
 export default function Home() {
-  const photosService = new GooglePhotosService();
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+
+  useEffect(() => {
+    const fetchMediaItems = async () => {
+      const items = await fetch("/api/pong").then(res => res.json());
+      setMediaItems(items.data.mediaItems);
+    };
+    
+    fetchMediaItems();
+  }, []);
+
+  if (mediaItems.length === 0) return;
 
   return (
     <>
@@ -99,64 +115,23 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col mt-20">
-          {/* Title Section */}
           <h1 className="text-4xl font-bold text-center mb-8">
             Burleigh Beach
           </h1>
 
           {/* Photo Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-6">
-            {/* First Row */}
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 1"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 2"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 3"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-
-            {/* Second Row */}
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 4"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 5"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/cover_photo.JPG"
-                alt="Beach photo 6"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
+            {mediaItems.map((item, index) => (
+              <div key={index} className="relative aspect-[4/3]">
+                {item.mimeType.startsWith('image/') && (
+                  <img
+                    src={item.baseUrl}
+                    alt={item.filename || `Photo ${index + 1}`}
+                    className="object-cover rounded-lg"
+                  />
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
