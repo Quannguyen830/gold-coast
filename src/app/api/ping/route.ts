@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const encodedAuthCode = '4%2F0AeanS0YiFe6G62oUeZ78biysOoW-UWDW2HsnJRf3Pkeup9yv4v2DWCpos2bB6BqMwjF0Aw';
+  const encodedAuthCode = '4%2F0AeanS0Yiik0CBkTWyvRf-iHztvTNNsjkcH9Wy_4Wd14sh-GXD_hxCLOrTxn8zlzwxS1bqg';
   const decodedAuthCode = decodeURIComponent(encodedAuthCode);
   
   console.log(decodedAuthCode);
-  return NextResponse.json({ message: 'pong' });
+  return NextResponse.json({ message: decodedAuthCode });
 }
