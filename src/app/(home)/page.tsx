@@ -3,9 +3,7 @@
 import { DownloadIcon } from "@/components/common/icon/DownloadIcon";
 import { HeartIcon } from "@/components/common/icon/HeartIcon";
 import { SharedIcon } from "@/components/common/icon/SharedIcon";
-import { NavBar } from "@/components/common/share/NavBar";
 import { supabase } from "../utils/supabase";
-import { GooglePhotosService } from "@/service/service";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -31,7 +29,6 @@ export default function Home() {
     
     fetchMediaItems();
   }, []);
-
 
   if (!mediaItems || mediaItems.length === 0) return;
 
@@ -100,7 +97,7 @@ export default function Home() {
               <div key={index} className="relative aspect-[4/3]">
                 {item.mimeType.startsWith('image/') && (
                   <img
-                  src={item.productUrl}
+                  src={`/api/image-proxy?url=${encodeURIComponent(item.baseUrl)}`}
                   alt={item.filename || `Photo ${index + 1}`} 
                     className="object-cover rounded-lg"
                   />
