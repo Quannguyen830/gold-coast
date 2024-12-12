@@ -23,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     const fetchMediaItems = async () => {
       const items = await supabase.from("image_links").select("*");
-      console.log(items.data?.at(0).productUrl);
+      // console.log(items.data?.at(0).productUrl);
       setMediaItems(items.data || []);
       // const items = await fetch("/api/pong").then(res => res.json());
       // setMediaItems(items.data.mediaItems);
@@ -32,7 +32,7 @@ export default function Home() {
     fetchMediaItems();
   }, []);
 
-  
+
   if (!mediaItems || mediaItems.length === 0) return;
 
   return (
@@ -100,7 +100,7 @@ export default function Home() {
               <div key={index} className="relative aspect-[4/3]">
                 {item.mimeType.startsWith('image/') && (
                   <img
-                  src={`/api/image-proxy?url=${encodeURIComponent(item.productUrl)}`}
+                  src={item.productUrl}
                   alt={item.filename || `Photo ${index + 1}`} 
                     className="object-cover rounded-lg"
                   />
