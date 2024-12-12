@@ -9,8 +9,9 @@ interface ImageHolderProps {
   width: number;
   height: number;
   className?: string;
+  sizes?: string;
 }
 
-export const ImageHolder = ({ src, alt, width, height, className }: ImageHolderProps) => {
-  return <CldImage src={src} alt={alt} width={width} height={height} className={className} />;
+export const ImageHolder = ({ src, alt, width, height, className, sizes }: ImageHolderProps) => {
+  return <CldImage src={src} alt={alt} width={width} height={height} className={className} sizes={sizes} />;
 };

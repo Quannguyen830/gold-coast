@@ -20,7 +20,6 @@ interface CloudinaryResource {
 
 export default async function Page() {
   try {
-    // Specify resource_type as 'image' and add type parameter
     const result = await cloudinary.api.resources({
       resource_type: 'image',
       type: 'upload',
@@ -28,15 +27,19 @@ export default async function Page() {
       max_results: 50
     });
     
-    console.log("Result", result.resources);
     return (
-      <div>
-        <h1>Cloudinary Test</h1>
-        <div className="grid grid-cols-2 gap-4">
+      <div className="container mx-auto px-4">
+        <h1 className="text-3xl font-bold text-center my-8">Burleigh Beach</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {result.resources.map((resource: CloudinaryResource) => (
-            <div key={resource.public_id} className="relative w-full h-[300px]">
-              <ImageHolder src={resource.secure_url} alt={resource.public_id} width={resource.width/5} height={resource.height/5} />
-            </div>
+            <ImageHolder 
+              key={resource.public_id}
+              src={resource.secure_url} 
+              alt={resource.public_id} 
+              width={resource.width/10}
+              height={resource.height/10}
+              className="rounded-lg"
+            />
           ))}
         </div>
       </div>
