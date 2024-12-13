@@ -1,41 +1,18 @@
-"use client";
-
 import { DownloadIcon } from "@/components/common/icon/DownloadIcon";
 import { HeartIcon } from "@/components/common/icon/HeartIcon";
 import { SharedIcon } from "@/components/common/icon/SharedIcon";
 import { supabase } from "../utils/supabase";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import ImageGrid from "@/components/common/share/ImageGrid";
+import { NavBar } from "@/components/common/share/NavBar";
 
-interface MediaItem {
-  id: string;
-  baseUrl: string;
-  productUrl: string;
-  filename: string;
-  mimeType: string;
-}
 
 export default function Home() {
-  const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
-
-  useEffect(() => {
-    const fetchMediaItems = async () => {
-      const items = await supabase.from("image_links").select("*");
-      // console.log(items.data?.at(0).productUrl);
-      setMediaItems(items.data || []);
-      // const items = await fetch("/api/pong").then(res => res.json());
-      // setMediaItems(items.data.mediaItems);
-    };
-    
-    fetchMediaItems();
-  }, []);
-
-  if (!mediaItems || mediaItems.length === 0) return;
-
   return (
     <>
       <div className="flex flex-col mx-auto p-4">
-        <div className="fixed top-0 w-full mx-10">
+        <div className="fixed py-5 top-0 w-fit mx-10">
           {/* <NavBar /> */}
         </div>
 
@@ -58,14 +35,7 @@ export default function Home() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-xl font-semibold mb-2">Location</h3>
-                <p
-                  contentEditable="true"
-                  suppressContentEditableWarning
-                  className="outline-none focus:bg-white/10 rounded px-1 transition-colors"
-                  onBlur={(e) => {
-                    console.log("New text:", e.currentTarget.textContent);
-                  }}
-                >
+                <p>
                   Something cool about this picture
                 </p>
               </div>
@@ -86,25 +56,7 @@ export default function Home() {
         </div>
 
         <div className="rounded-2xl mx-10 overflow-hidden bg-white shadow-lg mt-20 px-5 py-20">
-          {/* Title Section */}
-          <h1 className="text-4xl font-bold text-center mb-8">
-            Burleigh Beach
-          </h1>
-
-          {/* Photo Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-6">
-            {mediaItems.map((item, index) => (
-              <div key={index} className="relative aspect-[4/3]">
-                {item.mimeType.startsWith('image/') && (
-                  <img
-                  src={`/api/image-proxy?url=${encodeURIComponent(item.baseUrl)}`}
-                  alt={item.filename || `Photo ${index + 1}`} 
-                    className="object-cover rounded-lg"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+          <ImageGrid />
         </div>
       </div>
     </>

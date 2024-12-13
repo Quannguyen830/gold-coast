@@ -1,4 +1,3 @@
-import React from 'react';
 import { v2 as cloudinary } from 'cloudinary';
 import { ImageHolder } from '@/components/common/share/ImageHolder';
 import { CloudinaryResource } from '@/constants/interface';
@@ -9,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export default async function Page() {
+export default async function ImageGrid() {
   try {
     const result = await cloudinary.api.resources({
       resource_type: 'image',
@@ -45,4 +44,3 @@ export default async function Page() {
     );
   }
 }
-
