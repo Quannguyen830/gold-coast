@@ -55,10 +55,8 @@ export default function Home() {
         {/* <div className="rounded-2xl mx-10 overflow-hidden bg-white shadow-lg mt-20 px-5 py-20"> */}
         <div>
           <h1 className="text-3xl font-bold text-center my-8">Burleigh Beach</h1>
-          {/* <ImageGrid /> */}
           <ImageGrid2 />
-        <h1 className="text-center text-4xl font-bold">{"Gold Coast"}</h1>
-        <h2 className="text-center text-lg mb-8">{"Summer 2024"}</h2>
+        </div>
 
         <div className="rounded-xl mx-10 overflow-hidden bg-white shadow-lg px-3 py-5">
           <ImageCarousel />
