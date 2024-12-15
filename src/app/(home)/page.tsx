@@ -4,6 +4,7 @@ import { SharedIcon } from "@/components/common/icon/SharedIcon";
 import Image from "next/image";
 import ImageGrid from "@/components/common/share/ImageGrid";
 import ImageGrid2 from "@/components/common/share/ImageGrid2";
+import ImageCarousel from "@/components/common/share/ImageCarousel";
 
 
 export default function Home() {
@@ -56,6 +57,11 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-center my-8">Burleigh Beach</h1>
           {/* <ImageGrid /> */}
           <ImageGrid2 />
+        <h1 className="text-center text-4xl font-bold">{"Gold Coast"}</h1>
+        <h2 className="text-center text-lg mb-8">{"Summer 2024"}</h2>
+
+        <div className="rounded-xl mx-10 overflow-hidden bg-white shadow-lg px-3 py-5">
+          <ImageCarousel />
         </div>
       </div>
     </>
