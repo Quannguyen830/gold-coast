@@ -1,6 +1,5 @@
 import { CloudinaryResource } from '@/constants/interface';
 import { v2 as cloudinary } from 'cloudinary';
-import { useState } from 'react';
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -8,25 +7,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export default async function ImageGrid2() {
-  // const [currentColumn, setCurrentColumn] = useState<number>(1);
-  
-  // const imageIndexConverter = () => {
-  //   if (currentColumn + 1 > 3) {
-  //     setCurrentColumn(1);
-  //     return currentColumn;
-  //   }
-  //   setCurrentColumn(currentColumn + 1);
-  //   return currentColumn;
-  // }
-  
+export default async function ImageGrid2() {  
   const result = await cloudinary.api.resources({
     resource_type: 'image',
     type: 'upload',
     prefix: 'gold-coast',
     max_results: 50
   });
-
 
   return (
     <div className="container mx-auto px-4">
@@ -37,7 +24,7 @@ export default async function ImageGrid2() {
               key={index}
               src={image.secure_url}
               alt={index.toString()}
-              className={`rounded-lg w-full pb-4`}
+              className={`rounded-lg w-full mb-4`}
             />
           ))}
         </div>
@@ -48,7 +35,7 @@ export default async function ImageGrid2() {
               key={index}
               src={image.secure_url}
               alt={index.toString()}
-              className={`rounded-lg w-full pb-4`}
+              className={`rounded-lg w-full mb-4`}
             />
           ))}
         </div>
@@ -59,7 +46,7 @@ export default async function ImageGrid2() {
               key={index}
               src={image.secure_url}
               alt={index.toString()}
-              className={`rounded-lg w-full pb-4`}
+              className={`rounded-lg w-full mb-4`}
             />
           ))}
         </div>
