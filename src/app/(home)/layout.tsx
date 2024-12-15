@@ -17,7 +17,7 @@ export default async function RootLayout({
       <body
         className={`bg-red-50`}
       >
-        <main className="pt-20">
+        <main className="">
           {children}
         </main>
       </body>
