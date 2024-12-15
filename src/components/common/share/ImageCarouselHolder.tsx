@@ -10,25 +10,30 @@ import { useState } from "react";
 // Array of objects containing image data
 const images = [
   {
-    src: "/cover_photo.JPG",
+    src: "cover_photo/cover_photo.JPG",
     location: "Brisbane",
     description: "1st picture. Everyone wants more.",
   },
   {
-    src: "/cover_photo-1.JPG",
+    src: "cover_photo/cover_photo-1.JPG",
     location: "Brisbane",
     description: "100th picture. Loc wants more",
   },
   {
-    src: "/cover_photo-2.JPG",
+    src: "cover_photo/cover_photo-2.JPG",
     location: "Gold Coast (Real bo bien vang)",
     description: "Airplane and suitcases are waiting",
   },
   {
-    src: "/cover_photo-3.JPG",
+    src: "cover_photo/cover_photo-3.JPG",
     location: "Wet and wild",
     description: "This gang is created 1 hour ago",
   },
+  {
+    src: "cover_photo/cover_photo-4.JPG",
+    location: "Brisbane",
+    description: "After 50 shots with 3 cameras and 4 different angles",
+  }
 ];
 
 export default function ImageCarouselHolder() {
@@ -46,7 +51,7 @@ export default function ImageCarouselHolder() {
   return (
     <div>
       <div className="relative h-[700px]">
-        <Image
+        <img
           src={images[currentIndex].src}
           alt="Cover Photo"
           width={1200}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import '..//globals.css';
-import { GooglePhotosService } from "@/service/service";
 
 export const metadata: Metadata = {
   title: "Create Next App",

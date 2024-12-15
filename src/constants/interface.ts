@@ -4,3 +4,9 @@ export interface CloudinaryResource {
   width: number;
   height: number;
 }
+
+export interface Person {
+  name: string;
+  secret_santa: string,
+  base_url: string,
+}
