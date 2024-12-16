@@ -2,12 +2,12 @@ export const secretSantaDistribution = [
   {
     name: "Long",
     secret_santa: "Chi",
-    base_url: "profile/profile_chi.JPG"
+    base_url: "profile/profile_chi.jpg"
   },
   {
     name: "Loc",
     secret_santa: "Long",
-    base_url: "profile/profile_long.JPG"
+    base_url: "profile/profile_long.jpg"
   },
   {
     name: "Thao Anh",
@@ -17,7 +17,7 @@ export const secretSantaDistribution = [
   {
     name: "Chi",
     secret_santa: "Jenny",
-    base_url: "profile/profile_jenny.JPG"
+    base_url: "profile/profile_jenny.jpg"
   },
   {
     name: "Quyen",
@@ -27,7 +27,7 @@ export const secretSantaDistribution = [
   {
     name: "Jenny",
     secret_santa: "Quyen",
-    base_url: "profile/profile_quyen.JPG"
+    base_url: "profile/profile_quyen.jpg"
   },
   {
     name: "Giang",
