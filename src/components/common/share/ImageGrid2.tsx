@@ -2,7 +2,7 @@
 
 import { CloudinaryAPIResponse, CloudinaryResource } from "@/constants/interface";
 import next from "next";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 
 
@@ -11,6 +11,10 @@ export default function ImageGrid2() {
   const [sublist2, setSublist2] = useState<CloudinaryResource[]>([]);
   const [sublist3, setSublist3] = useState<CloudinaryResource[]>([]);
 
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const endOfListRef = useRef<HTMLDivElement>(null);
 
   const getImages = useCallback((nextCursor?: string) => {
     let url = '/api/cloudinary';
@@ -53,6 +57,30 @@ export default function ImageGrid2() {
       setSublist3(sublist3);
     });
   }, [getImages]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!endOfListRef.current || isLoading) return;
+
+      const { bottom } = endOfListRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Check if we're within 500px of the bottom
+      if (windowHeight - bottom < 500 && nextCursor) {
+        setIsLoading(true);
+        getImages(nextCursor).then(({ sublist1, sublist2, sublist3, nextCursor }) => {
+          setSublist1(prev => [...prev, ...sublist1]);
+          setSublist2(prev => [...prev, ...sublist2]);
+          setSublist3(prev => [...prev, ...sublist3]);
+          setNextCursor(nextCursor);
+          setIsLoading(false);
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [getImages, nextCursor, isLoading]);
   
   return (
     <div className="container mx-auto px-4">
@@ -90,6 +118,11 @@ export default function ImageGrid2() {
           ))}
         </div>
       </div>
+      
+      {isLoading && (
+        <div className="text-center py-4">Loading more images...</div>
+      )}
+      <div ref={endOfListRef} />
     </div>
   );
 

@@ -21,40 +21,12 @@ export default function Home() {
             alt="Cover Photo"
             className="w-full h-full object-cover"
           />
-
-          {/* <div className="bg-transparent text-black p-6">
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Location</h3>
-                <p>
-                  Something cool about this picture
-                </p>
-              </div>
-
-              <div className="flex gap-4">
-                <button className="p-2 hover:bg-black/10 rounded-full">
-                  <HeartIcon />
-                </button>
-                <button className="p-2 hover:bg-black/10 rounded-full">
-                  <DownloadIcon />
-                </button>
-                <button className="p-2 hover:bg-black/10 rounded-full">
-                  <SharedIcon />
-                </button>
-              </div>
-            </div>
-          </div> */}
         </div>
 
-        {/* <div className="rounded-2xl mx-10 overflow-hidden bg-white shadow-lg mt-20 px-5 py-20"> */}
         <div>
           <h1 className="text-3xl font-bold text-center my-8">Burleigh Beach</h1>
           <ImageGrid2 />
         </div>
-
-        {/* <div className="rounded-xl mx-10 overflow-hidden bg-white shadow-lg px-3 py-5">
-          <ImageCarousel />
-        </div> */}
       </div>
     </>
   );
