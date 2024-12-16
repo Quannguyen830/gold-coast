@@ -12,6 +12,6 @@ export interface Person {
 }
 
 export interface CloudinaryAPIResponse {
-  nextCursor: string;
+  next_cursor: string;
   resources: CloudinaryResource[];
 }
