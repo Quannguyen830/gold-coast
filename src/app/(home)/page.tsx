@@ -1,5 +1,4 @@
 import ImageGrid2 from "@/components/common/share/ImageGrid2";
-import ImageCarousel from "@/components/common/share/ImageCarousel";
 import { DownloadIcon } from "@/components/common/icon/DownloadIcon";
 import { SharedIcon } from "@/components/common/icon/SharedIcon";
 import { HeartIcon } from "@/components/common/icon/HeartIcon";
@@ -53,9 +52,9 @@ export default function Home() {
           <ImageGrid2 />
         </div>
 
-        <div className="rounded-xl mx-10 overflow-hidden bg-white shadow-lg px-3 py-5">
+        {/* <div className="rounded-xl mx-10 overflow-hidden bg-white shadow-lg px-3 py-5">
           <ImageCarousel />
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -10,3 +10,8 @@ export interface Person {
   secret_santa: string,
   base_url: string,
 }
+
+export interface CloudinaryAPIResponse {
+  nextCursor: string;
+  resources: CloudinaryResource[];
+}
