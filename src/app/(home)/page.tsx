@@ -11,8 +11,8 @@ export default function Home() {
         {/* Cover Photo */}
         <div className="relative overflow-hidden h-screen bg-white">
           <div className="absolute flex-col z-20 text-white mt-16 w-full flex justify-center">
-            <h1 className="text-center text-5xl font-bold">{"Gold Coast"}</h1>
-            <h2 className="text-center text-lg">{"Summer 2024"}</h2>
+            <h1 className="text-center text-[80px] font-bold">{"Gold Coast"}</h1>
+            <h2 className="text-center text-2xl">{"Summer 2024"}</h2>
           </div>
 
           <div className="absolute inset-0 bg-black/30 "></div>
@@ -24,7 +24,7 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className="text-3xl font-bold text-center my-8">Burleigh Beach</h1>
+          <h1 className="text-[50px] font-bold text-center my-8">Gold Coast Pinterest</h1>
           <ImageGrid2 />
         </div>
       </div>

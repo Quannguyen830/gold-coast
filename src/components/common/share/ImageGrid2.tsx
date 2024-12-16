@@ -4,8 +4,7 @@ import { CloudinaryAPIResponse, CloudinaryResource } from "@/constants/interface
 import next from "next";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CldImage } from "next-cloudinary";
-
-
+import { X } from "lucide-react";
 
 export default function ImageGrid2() {
   const [sublist1, setSublist1] = useState<CloudinaryResource[]>([]);
@@ -16,6 +15,9 @@ export default function ImageGrid2() {
   const [isLoading, setIsLoading] = useState(false);
 
   const endOfListRef = useRef<HTMLDivElement>(null);
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getImages = useCallback((nextCursor?: string) => {
     let url = '/api/cloudinary';
@@ -91,45 +93,62 @@ export default function ImageGrid2() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [getImages, nextCursor, isLoading]);
 
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    closeModal()
+  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className={`col-start-1`}>
           {sublist1.map((image: CloudinaryResource, index: number) => (
-            <CldImage
-              key={image.public_id + `/${index}`}
-              src={image.secure_url}
-              alt={image.public_id}
-              width={800}
-              height={600}
-              className="rounded-lg w-full mb-4"
-            />
+            <div key={image.public_id + `/${index}`} onClick={() => handleImageClick(image.secure_url)}>
+              <CldImage
+                src={image.secure_url}
+                alt={image.public_id}
+                width={800}
+                height={600}
+                className="rounded-lg w-full mb-4 cursor-pointer"
+              />
+            </div>
           ))}
         </div>
 
         <div className={`col-start-2`}>
           {sublist2.map((image: CloudinaryResource, index: number) => (
-            <CldImage
-              key={image.public_id + `/${index}`}
-              src={image.secure_url}
-              alt={image.public_id}
-              width={800}
-              height={600}
-              className="rounded-lg w-full mb-4"
-            />
+            <div key={image.public_id + `/${index}`} onClick={() => handleImageClick(image.secure_url)}>
+              <CldImage
+                src={image.secure_url}
+                alt={image.public_id}
+                width={800}
+                height={600}
+                className="rounded-lg w-full mb-4 cursor-pointer"
+              />
+            </div>
           ))}
         </div>
 
         <div className={`col-start-3`}>
           {sublist3.map((image: CloudinaryResource, index: number) => (
-            <CldImage
-              key={image.public_id + `/${index}`}
-              src={image.secure_url}
-              alt={image.public_id}
-              width={800}
-              height={600}
-              className="rounded-lg w-full mb-4"
-            />
+            <div key={image.public_id + `/${index}`} onClick={() => handleImageClick(image.secure_url)}>
+              <CldImage
+                src={image.secure_url}
+                alt={image.public_id}
+                width={800}
+                height={600}
+                className="rounded-lg w-full mb-4 cursor-pointer"
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -138,7 +157,26 @@ export default function ImageGrid2() {
         <div className="text-center py-4">Loading more images...</div>
       )}
       <div ref={endOfListRef} />
+
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75"
+          onClick={handleOverlayClick}
+        >
+          <div className="relative">
+            <button onClick={closeModal} className="absolute top-2 right-2 p-2 text-white rounded">
+              <X />
+            </button>
+            <img
+              src={selectedImage!}
+              alt="Full size"
+              className="max-w-full max-h-screen p-7 object-contain rounded-lg"
+              width={1200}
+              height={900}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
-
 }
