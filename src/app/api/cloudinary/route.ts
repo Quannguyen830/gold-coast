@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   const result = await cloudinary.api.resources({
     resource_type: 'image',
     type: 'upload',
-    prefix: 'gold-coast',
+    prefix: 'gold-coast-new',
     max_results: 100,
     next_cursor: nextCursor ?? undefined
   });
